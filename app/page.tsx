@@ -3,10 +3,10 @@
 import MetaMaskSDK from "@metamask/sdk";
 
 export default function Home() {
-  const test = () => {
+  const test = async () => {
     console.log("1");
     const ethereum = sdk.getProvider();
-    const accounts = ethereum?.request({ method: "eth_requestAccounts" });
+    const accounts = await ethereum?.request({ method: "eth_requestAccounts" });
     console.log(accounts);
   };
 
