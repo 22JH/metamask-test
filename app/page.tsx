@@ -1,3 +1,5 @@
+"use client";
+
 import MetaMaskSDK from "@metamask/sdk";
 
 export default function Home() {
