@@ -25,26 +25,7 @@ export default function SDKContainer() {
   const [connected, setConnected] = useState(false);
   const [serviceStatus, setServiceStatus] = useState<ServiceStatus>();
   const [activeProvider, setActiveProvider] = useState<SDKProvider>();
-  const [currentLanguage, setCurrentLanguage] = useState(
-    localStorage.getItem("MetaMaskSDKLng") || "en",
-  );
-
   const languages = sdk?.availableLanguages ?? ["en"];
-
-  const changeLanguage = async (currentLanguage: string) => {
-    localStorage.setItem("MetaMaskSDKLng", currentLanguage);
-    window.location.reload();
-  };
-
-  const handleLanguageChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
-  ) => {
-    setCurrentLanguage(event.target.value);
-
-    changeLanguage(event.target.value).then(() => {
-      console.debug(`language changed to ${event.target.value}`);
-    });
-  };
 
   useEffect(() => {
     const doAsync = async () => {
@@ -325,20 +306,6 @@ export default function SDKContainer() {
       </Head>
       <main style={{ textAlign: "center" }}>
         <h1>NextJS Example</h1>
-        <div className="language-dropdown">
-          <label htmlFor="language-select">Language: </label>
-          <select
-            id="language-select"
-            value={currentLanguage}
-            onChange={handleLanguageChange}
-          >
-            {languages.map((lang) => (
-              <option key={lang} value={lang}>
-                {lang}
-              </option>
-            ))}
-          </select>
-        </div>
         <div className={"info-section"}>
           <>
             {`Connected chain: ${chain}`}
