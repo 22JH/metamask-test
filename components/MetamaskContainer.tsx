@@ -244,7 +244,7 @@ export default function SDKContainer() {
     }
   };
 
-  const addEthereumChain = () => {
+  const addKlaytnChain = () => {
     if (!activeProvider) {
       throw new Error(`invalid ethereum provider`);
     }
@@ -254,11 +254,11 @@ export default function SDKContainer() {
         method: "wallet_addEthereumChain",
         params: [
           {
-            chainId: "0x89",
-            chainName: "Polygon",
-            blockExplorerUrls: ["https://polygonscan.com"],
-            nativeCurrency: { symbol: "MATIC", decimals: 18 },
-            rpcUrls: ["https://polygon-rpc.com/"],
+            chainId: "0x2019",
+            chainName: "Klaytn Mainnet",
+            blockExplorerUrls: ["https://klaytnscope.com"],
+            nativeCurrency: { symbol: "KLAY", decimals: 18 },
+            rpcUrls: ["https://public-en-cypress.klaytn.net"],
           },
         ],
       })
@@ -382,7 +382,7 @@ export default function SDKContainer() {
               <button
                 className={"button-normal"}
                 style={{ padding: 10, margin: 10 }}
-                onClick={addEthereumChain}
+                onClick={addKlaytnChain}
               >
                 Add Polygon
               </button>

@@ -1,12 +1,38 @@
 "use client";
 
+import sdk2 from "@web3-onboard/metamask";
+import Onboard from "@web3-onboard/core";
+
+//@ts-ignore
 import MetaMaskSDK from "@metamask/sdk";
 
 export default function Home() {
+  const metamaskSDKWallet = sdk2({
+    options: {
+      extensionOnly: false,
+      dappMetadata: {
+        name: "Example Web3-Onboard Dapp",
+      },
+    },
+  });
+
   const test = async () => {
-    console.log("1");
     const ethereum = sdk.getProvider();
+
     if (!ethereum) return;
+    await sdk.init();
+    await ethereum.request({
+      method: "wallet_addEthereumChain",
+      params: [
+        {
+          chainId: "0x2019",
+          chainName: "Klaytn Mainnet",
+          blockExplorerUrls: ["https://klaytnscope.com"],
+          nativeCurrency: { symbol: "KLAY", decimals: 18 },
+          rpcUrls: ["https://public-en-cypress.klaytn.net"],
+        },
+      ],
+    });
     const [accounts, chainId] = (await Promise.all([
       ethereum.request({
         method: "eth_requestAccounts",
@@ -34,5 +60,26 @@ export default function Home() {
       url: "https://22JH.github.io/metamask-test",
     },
   });
-  return <button onClick={test}>test</button>;
+
+  const test2 = async () => {
+    const ethereumSepolia = {
+      id: 11155111,
+      token: "ETH",
+      label: "Sepolia",
+      rpcUrl: "https://rpc.sepolia.org/",
+    };
+    const onboard = Onboard({
+      wallets: [metamaskSDKWallet],
+      chains: [ethereumSepolia],
+    });
+
+    const connectedWallets = await onboard.connectWallet();
+    console.log(connectedWallets);
+  };
+  return (
+    <>
+      <button onClick={test}>test</button>
+      <button onClick={test2}>test2</button>
+    </>
+  );
 }
