@@ -36,5 +36,6 @@ export default function test2() {
   return <><button onClick={connect}>connect</button><button onClick={sign}>sign</button>
         <pre>{klaytnInfo}</pre>
         <pre>{caverInfo}</pre>
+        {typeof window !== "undefined" && Object.entries(window).map(([key, value]) => <p key={key}>{key}</p>)}
   <button onClick={() => alert(window?.klaytn?.request)}>klaytn.requset</button></>;
 }
