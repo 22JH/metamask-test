@@ -1,9 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 //@ts-ignore
-import CircularJSON from 'circular-json';
 import { createWalletClient, custom } from 'viem';
 
 declare global {
@@ -17,8 +15,6 @@ declare global {
 
 export default function test2() {
   const [account, setAccount] = useState<string | null>(null)
-  const [klaytnInfo, setKlaytnInfo] = useState<string>("");
-  const [caverInfo, setCaverInfo] = useState<string>("");
 
   const walletClient = createWalletClient({
     transport: custom(window.ethereum!),
@@ -27,8 +23,6 @@ export default function test2() {
   const connect = async () => {
     const a = await window.klaytn.enable()
     setAccount(a[0])
-    setKlaytnInfo(CircularJSON.stringify(window.klaytn)); 
-    setCaverInfo(CircularJSON.stringify(window.ethereum)); 
   }
 
   const wagmiSign = async () => {
