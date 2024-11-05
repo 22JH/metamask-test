@@ -9,6 +9,7 @@ declare global {
     klaytn?: any;
     Caver?: any;
     caver?: any;
+    gfProvider?: any;
   }
 }
 
@@ -21,7 +22,7 @@ export default function test2() {
     const a = await window.klaytn.enable()
     setAccount(a[0])
     setKlaytnInfo(JSON.stringify(window.klaytn, null, 2)); 
-    setCaverInfo(JSON.stringify(window.Caver, null, 2)); 
+    setCaverInfo(JSON.stringify(window.gfProvider, null, 2)); 
     alert(`
       window.caver: ${JSON.stringify(window.Caver, null, 2)}
       `)
