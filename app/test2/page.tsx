@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-//@ts-ignore
+//@ts
 import CircularJSON from 'circular-json';
 
 
@@ -26,13 +26,13 @@ export default function test2() {
     setKlaytnInfo(CircularJSON.stringify(window.klaytn)); 
     setCaverInfo(CircularJSON.stringify(window.gfProvider)); 
     alert(`
-      window.caver: ${CircularJSON.stringify(window.Caver)}
+      window.caver: ${CircularJSON.stringify(window.caver)}
       `)
   }
   const sign = async () => {
     try {
       const provider = window.caver.currentProvider
-      alert(JSON.stringify(window.caver, null, 3))
+      alert(CircularJSON.stringify(window.caver.klay, null, 3))
       const res = await provider.request({
         method: 'klay_sign',
         params: [account, 'message'],
