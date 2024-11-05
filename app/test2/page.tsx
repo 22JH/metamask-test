@@ -28,10 +28,9 @@ export default function test2() {
   }
   const sign = async () => {
     try {
-      const res = await window.klaytn.request({
-        method: 'klay_sign',
-        params: [account, 'message'],
-      });
+      const res = await window.caver.sign.request(
+        'message', account
+      );
       alert(res)
     } catch (err) {
       alert(err)
