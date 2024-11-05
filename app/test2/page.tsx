@@ -35,10 +35,10 @@ export default function test2() {
   }
   const sign = async () => {
     try {
-      const provider = window.ethereum
+      const provider = window.klaytn
       const res = await provider?.request({
-        method: 'eth_sign',
-        params: ['message',account],
+        method: 'klay_sign',
+        params: [account, 'message'],
       })
       return res
     } catch (err) {
