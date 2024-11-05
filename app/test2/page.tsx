@@ -7,7 +7,7 @@ import { useState } from "react";
 declare global {
   interface Window {
     klaytn?: any;
-    caver?: any;
+    Caver?: any;
   }
 }
 
@@ -20,7 +20,7 @@ export default function test2() {
     const a = await window.klaytn.enable()
     setAccount(a[0])
     setKlaytnInfo(JSON.stringify(window.klaytn, null, 2)); 
-    setCaverInfo(JSON.stringify(window.caver, null, 2)); 
+    setCaverInfo(JSON.stringify(window.Caver, null, 2)); 
   }
   const sign = async () => {
     try {
