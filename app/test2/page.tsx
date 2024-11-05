@@ -10,13 +10,16 @@ declare global {
 }
 
 export default function test2() {
+  const connect = async () => {
+    const a = await window.klaytn.enable()
+    alert(a)
+  }
   const sign = async () => {
-    alert(window.klaytn)
-    const res =await (window as Window).klaytn?.request({
-      method: "klay_sign",
+    const res = await window.klaytn.request({
+      method: 'klay_sign',
       params: ['0xcFF413Ccb66205deec3c80473552cFF00fC8f7a4', 'message'],
     });
     alert(res)
   };
-  return <p onClick={sign}>sign</p>;
+  return <><button onClick={connect}>connect</button><p onClick={sign}>sign</p></>;
 }
