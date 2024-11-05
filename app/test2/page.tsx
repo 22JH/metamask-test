@@ -24,14 +24,13 @@ export default function test2() {
     const a = await window.klaytn.enable()
     setAccount(a[0])
     setKlaytnInfo(CircularJSON.stringify(window.klaytn)); 
-    setCaverInfo(CircularJSON.stringify(window.caver)); 
+    setCaverInfo(CircularJSON.stringify(window.ethereum)); 
     
   }
   const sign = async () => {
     try {
-      const provider = window.caver.currentProvider
-      alert(CircularJSON.stringify(window.caver.klay, null, 3))
-      const res = await provider.request({
+      const provider = window.ethereum
+      const res = await provider?.request({
         method: 'klay_sign',
         params: [account, 'message'],
       });
@@ -43,6 +42,5 @@ export default function test2() {
   return <><button onClick={connect}>connect</button><button onClick={sign}>sign</button>
         <pre>{klaytnInfo}</pre>
         <pre>{caverInfo}</pre>
-        {typeof window !== "undefined" && Object.entries(window).map(([key, value]) => <p key={key}>{key}</p>)}
   <button onClick={() => alert(window?.klaytn?.request)}>klaytn.requset</button></>;
 }
