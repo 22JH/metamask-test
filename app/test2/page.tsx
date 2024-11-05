@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
+//@ts-ignore
+import CircularJSON from 'circular-json';
 
 
 declare global {
@@ -13,20 +15,6 @@ declare global {
   }
 }
 
-function safeStringify(obj: any) {
-  const seen = new WeakSet();
-  return JSON.stringify(obj, (key, value) => {
-    if (typeof value === "object" && value !== null) {
-      if (seen.has(value)) {
-        return;
-      }
-      seen.add(value);
-    }
-    return value;
-  }, 2);
-}
-
-
 export default function test2() {
   const [account, setAccount] = useState<string | null>(null)
   const [klaytnInfo, setKlaytnInfo] = useState<string>("");
@@ -35,10 +23,10 @@ export default function test2() {
   const connect = async () => {
     const a = await window.klaytn.enable()
     setAccount(a[0])
-    setKlaytnInfo(safeStringify(window.klaytn)); 
-    setCaverInfo(safeStringify(window.gfProvider)); 
+    setKlaytnInfo(CircularJSON.stringify(window.klaytn)); 
+    setCaverInfo(CircularJSON.stringify(window.gfProvider)); 
     alert(`
-      window.caver: ${safeStringify(window.Caver)}
+      window.caver: ${CircularJSON.stringify(window.Caver)}
       `)
   }
   const sign = async () => {
