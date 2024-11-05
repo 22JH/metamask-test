@@ -5,6 +5,7 @@ import Onboard from "@web3-onboard/core";
 
 //@ts-ignore
 import MetaMaskSDK from "@metamask/sdk";
+import Link from "next/link";
 
 export default function Home() {
   const metamaskSDKWallet = sdk2({
@@ -74,12 +75,12 @@ export default function Home() {
     });
 
     const connectedWallets = await onboard.connectWallet();
-    console.log(connectedWallets);
   };
   return (
     <>
       <button onClick={test}>test</button>
       <button onClick={test2}>test2</button>
+      <Link href="test2">testLink</Link>
     </>
   );
 }
