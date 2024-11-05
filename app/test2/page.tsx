@@ -29,5 +29,5 @@ export default function test2() {
     }
   };
   return <><button onClick={connect}>connect</button><button onClick={sign}>sign</button>
-  {Object.entries(window).map(([key, value]) => <p key={key}>{key}</p>)}</>;
+  {typeof window !== "undefined" && Object.entries(window).map(([key, value]) => <p key={key}>{key}</p>)}</>;
 }
