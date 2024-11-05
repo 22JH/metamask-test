@@ -28,9 +28,11 @@ export default function test2() {
   }
   const sign = async () => {
     try {
-      const res = await window.caver.sign.request(
-        'message', account
-      );
+      const provider = window.caver.currentProvider
+      const res = await provider.request({
+        method: 'klay_sign',
+        params: [account, 'message'],
+      });
       alert(res)
     } catch (err) {
       alert(err)
