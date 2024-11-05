@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 
 
 declare global {
@@ -10,16 +11,21 @@ declare global {
 }
 
 export default function test2() {
+  const [account, setAccount] = useState<string | null>(null)
   const connect = async () => {
     const a = await window.klaytn.enable()
-    alert(a)
+    setAccount(a[0])
   }
   const sign = async () => {
-    const res = await window.klaytn.request({
-      method: 'klay_sign',
-      params: ['0xcFF413Ccb66205deec3c80473552cFF00fC8f7a4', 'message'],
-    });
-    alert(res)
+    try {
+      const res = await window.klaytn.request({
+        method: 'klay_sign',
+        params: [account, 'message'],
+      });
+      alert(res)
+    } catch (err) {
+      alert(err)
+    }
   };
   return <><button onClick={connect}>connect</button><p onClick={sign}>sign</p></>;
 }
