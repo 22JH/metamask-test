@@ -11,6 +11,7 @@ declare global {
 
 export default function test2() {
   const sign = async () => {
+    alert(window.klaytn)
     const res =await (window as Window).klaytn?.request({
       method: "klay_sign",
       params: ['0xcFF413Ccb66205deec3c80473552cFF00fC8f7a4', 'message'],
