@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 //@ts-ignore
 import CircularJSON from 'circular-json';
-
+import { createWalletClient, custom } from 'viem';
 
 declare global {
   interface Window {
@@ -20,12 +20,24 @@ export default function test2() {
   const [klaytnInfo, setKlaytnInfo] = useState<string>("");
   const [caverInfo, setCaverInfo] = useState<string>("");
 
+  const walletClient = createWalletClient({
+    transport: custom(window.ethereum!),
+  })
+
   const connect = async () => {
     const a = await window.klaytn.enable()
     setAccount(a[0])
     setKlaytnInfo(CircularJSON.stringify(window.klaytn)); 
     setCaverInfo(CircularJSON.stringify(window.ethereum)); 
-    
+  }
+
+  const wagmiSign = async () => {
+    if (!account) return
+    const res = await walletClient.signMessage({
+      account: account as `0x${string}`,
+      message: 'message',
+    })
+    alert(res)
   }
   const sign = async () => {
     try {
@@ -40,7 +52,6 @@ export default function test2() {
     }
   };
   return <><button onClick={connect}>connect</button><button onClick={sign}>sign</button>
-        <pre>{klaytnInfo}</pre>
-        <pre>{caverInfo}</pre>
+        <button onClick={wagmiSign}>wagmiSign</button>
   <button onClick={() => alert(window?.klaytn?.request)}>klaytn.requset</button></>;
 }
