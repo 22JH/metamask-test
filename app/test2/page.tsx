@@ -12,10 +12,12 @@ declare global {
 
 export default function test2() {
   const [account, setAccount] = useState<string | null>(null)
+  const [klaytnInfo, setKlaytnInfo] = useState<string>("");
+
   const connect = async () => {
     const a = await window.klaytn.enable()
     setAccount(a[0])
-    alert(typeof window !== "undefined" ? Object.entries(window?.klaytn).map(([key, value]) => <p key={key}>{Object.entries(value as any).map(([key, value]) => <p key={key}>{key}</p>)}</p>) : "")
+    setKlaytnInfo(JSON.stringify(window.klaytn, null, 2)); // Klaytn 객체 정보를 문자열로 변환
   }
   const sign = async () => {
     try {
@@ -29,6 +31,7 @@ export default function test2() {
     }
   };
   return <><button onClick={connect}>connect</button><button onClick={sign}>sign</button>
-  {typeof window !== "undefined" && Object.entries(window).map(([key, value]) => <p key={key}>{key}</p>)}
+        <pre>{klaytnInfo}</pre> {/* Klaytn 객체 정보를 화면에 출력 */}
+
   <button onClick={() => alert(window?.klaytn?.request)}>klaytn.requset</button></>;
 }
