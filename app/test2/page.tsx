@@ -39,10 +39,39 @@ export default function test2() {
       const res = await provider?.request({
         method: 'klay_sign',
         params: [account, 'message'],
-      });
-      alert(res)
+      })
+      return res
     } catch (err) {
       alert(err)
+    }
+  };
+
+  const signAndDoSomething = async (signature: string): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (signature) {
+          resolve(`Success with signature: ${signature}`);
+        } else {
+          reject('Failed: No signature provided');
+        }
+      }, 1000); // 1초 후에 완료
+    });
+  };
+
+  const testMultiplePromises = async () => {
+    if (!account) return;
+    try {
+      const signature = await sign()
+
+      const results = await Promise.all([
+        signAndDoSomething(signature),
+        signAndDoSomething(signature),
+        signAndDoSomething(signature),
+      ]);
+
+      alert(results.join('\n'));
+    } catch (err) {
+      alert(err);
     }
   };
 
@@ -59,6 +88,7 @@ export default function test2() {
   }, [])
   return <><button onClick={connect}>connect</button><button onClick={sign}>sign</button>
         <button onClick={wagmiSign}>wagmiSign</button>
+        <button onClick={testMultiplePromises}>Test Multiple Promises</button>
         <pre>{klaytnInfo}</pre>
   <button onClick={() => alert(window?.klaytn?.request)}>klaytn.requset</button></>;
 }
