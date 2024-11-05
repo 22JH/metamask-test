@@ -24,10 +24,8 @@ export default function test2() {
     const a = await window.klaytn.enable()
     setAccount(a[0])
     setKlaytnInfo(CircularJSON.stringify(window.klaytn)); 
-    setCaverInfo(CircularJSON.stringify(window.gfProvider)); 
-    alert(`
-      window.caver: ${CircularJSON.stringify(window.caver)}
-      `)
+    setCaverInfo(CircularJSON.stringify(window.caver)); 
+    
   }
   const sign = async () => {
     try {
