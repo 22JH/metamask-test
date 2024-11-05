@@ -15,7 +15,7 @@ export default function test2() {
   const connect = async () => {
     const a = await window.klaytn.enable()
     setAccount(a[0])
-    alert(typeof window !== "undefined" ? Object.entries(window?.klaytn).map(([key, value]) => <p key={key}>{key}</p>) : "")
+    alert(typeof window !== "undefined" ? Object.entries(window?.klaytn).map(([key, value]) => <p key={key}>{Object.entries(value as any).map(([key, value]) => <p key={key}>{key}</p>)}</p>) : "")
   }
   const sign = async () => {
     try {
@@ -29,5 +29,6 @@ export default function test2() {
     }
   };
   return <><button onClick={connect}>connect</button><button onClick={sign}>sign</button>
-  {typeof window !== "undefined" && Object.entries(window).map(([key, value]) => <p key={key}>{key}</p>)}</>;
+  {typeof window !== "undefined" && Object.entries(window).map(([key, value]) => <p key={key}>{key}</p>)}
+  <button onClick={() => alert(window?.klaytn?.request)}>klaytn.requset</button></>;
 }
