@@ -22,7 +22,7 @@ export default function test2() {
     setAccount(a[0])
     setKlaytnInfo(JSON.stringify(window.klaytn, null, 2)); 
     setCaverInfo(JSON.stringify(window.Caver, null, 2)); 
-    alert(`window.Caver: ${window.Caver}
+    alert(`
       window.caver: ${window.caver}
       `)
   }
