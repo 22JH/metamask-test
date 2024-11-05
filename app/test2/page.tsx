@@ -13,6 +13,20 @@ declare global {
   }
 }
 
+function safeStringify(obj: any) {
+  const seen = new WeakSet();
+  return JSON.stringify(obj, (key, value) => {
+    if (typeof value === "object" && value !== null) {
+      if (seen.has(value)) {
+        return;
+      }
+      seen.add(value);
+    }
+    return value;
+  }, 2);
+}
+
+
 export default function test2() {
   const [account, setAccount] = useState<string | null>(null)
   const [klaytnInfo, setKlaytnInfo] = useState<string>("");
@@ -21,10 +35,10 @@ export default function test2() {
   const connect = async () => {
     const a = await window.klaytn.enable()
     setAccount(a[0])
-    setKlaytnInfo(JSON.stringify(window.klaytn, null, 2)); 
-    setCaverInfo(JSON.stringify(window.gfProvider, null, 2)); 
+    setKlaytnInfo(safeStringify(window.klaytn)); 
+    setCaverInfo(safeStringify(window.gfProvider)); 
     alert(`
-      window.caver: ${JSON.stringify(window.Caver, null, 2)}
+      window.caver: ${safeStringify(window.Caver)}
       `)
   }
   const sign = async () => {
