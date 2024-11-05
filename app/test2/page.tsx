@@ -27,5 +27,5 @@ export default function test2() {
       alert(err)
     }
   };
-  return <><button onClick={connect}>connect</button><p onClick={sign}>sign</p></>;
+  return <><button onClick={connect}>connect</button><button onClick={sign}>sign</button></>;
 }
