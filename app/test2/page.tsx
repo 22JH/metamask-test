@@ -15,6 +15,7 @@ export default function test2() {
   const connect = async () => {
     const a = await window.klaytn.enable()
     setAccount(a[0])
+    alert(window?.klaytn)
   }
   const sign = async () => {
     try {
@@ -27,5 +28,6 @@ export default function test2() {
       alert(err)
     }
   };
-  return <><button onClick={connect}>connect</button><button onClick={sign}>sign</button></>;
+  return <><button onClick={connect}>connect</button><button onClick={sign}>sign</button>
+  {Object.entries(window).map(([key, value]) => <p key={key}>{key}</p>)}</>;
 }
