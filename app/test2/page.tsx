@@ -30,7 +30,7 @@ export default function test2() {
   const sign = async () => {
     try {
       const provider = window.caver.currentProvider
-      alert(JSON.stringify(provider, null, 3))
+      alert(JSON.stringify(window.caver, null, 3))
       const res = await provider.request({
         method: 'klay_sign',
         params: [account, 'message'],
