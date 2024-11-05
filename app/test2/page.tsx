@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-//@ts
+//@ts-ignore
 import CircularJSON from 'circular-json';
 
 
