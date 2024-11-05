@@ -23,12 +23,13 @@ export default function test2() {
     setKlaytnInfo(JSON.stringify(window.klaytn, null, 2)); 
     setCaverInfo(JSON.stringify(window.Caver, null, 2)); 
     alert(`
-      window.caver: ${window.caver}
+      window.caver: ${JSON.stringify(window.Caver, null, 2)}
       `)
   }
   const sign = async () => {
     try {
-      const provider = window.caver.currentProvider
+      const provider = window.Caver.currentProvider
+      alert(JSON.stringify(provider, null, 2))
       const res = await provider.request({
         method: 'klay_sign',
         params: [account, 'message'],
