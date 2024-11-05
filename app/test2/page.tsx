@@ -8,6 +8,7 @@ declare global {
   interface Window {
     klaytn?: any;
     Caver?: any;
+    caver?: any;
   }
 }
 
@@ -21,6 +22,9 @@ export default function test2() {
     setAccount(a[0])
     setKlaytnInfo(JSON.stringify(window.klaytn, null, 2)); 
     setCaverInfo(JSON.stringify(window.Caver, null, 2)); 
+    alert(`window.Caver: ${window.Caver}
+      window.caver: ${window.caver}
+      `)
   }
   const sign = async () => {
     try {
