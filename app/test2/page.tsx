@@ -15,7 +15,7 @@ export default function test2() {
   const connect = async () => {
     const a = await window.klaytn.enable()
     setAccount(a[0])
-    alert(window?.klaytn)
+    alert(typeof window !== "undefined" ? Object.entries(window?.klaytn).map(([key, value]) => <p key={key}>{key}</p>) : "")
   }
   const sign = async () => {
     try {
