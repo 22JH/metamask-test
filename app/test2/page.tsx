@@ -18,6 +18,7 @@ declare global {
 export default function test2() {
   const [account, setAccount] = useState<string | null>(null)
   const [klaytnInfo, setKlaytnInfo] = useState<string>("")
+  
   const [walletClient, setWalletClient] = useState<any>(null)
 
   const connect = async () => {
@@ -27,16 +28,17 @@ export default function test2() {
 
   const wagmiSign = async () => {
     if (!account) return
+    const a = await walletClient
     const res = await walletClient.signMessage({
       account: account as `0x${string}`,
       message: 'message',
     })
+    
     alert(res)
   }
   const sign = async () => {
     try {
-      const provider = window.klaytn
-      const res = await provider?.request({
+      const res = await window.klaytn.request({
         method: 'klay_sign',
         params: [account, 'message'],
       })
@@ -77,7 +79,6 @@ export default function test2() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return
-
     if (window.ethereum) {
       setWalletClient(createWalletClient({
         transport: custom(window.ethereum),
@@ -90,5 +91,6 @@ export default function test2() {
         <button onClick={wagmiSign}>wagmiSign</button>
         <button onClick={testMultiplePromises}>Test Multiple Promises</button>
         <pre>{klaytnInfo}</pre>
+        <pre>{window && JSON.stringify(window.navigator.userAgent, null, 2)}</pre>
   <button onClick={() => alert(window?.klaytn?.request)}>klaytn.requset</button></>;
 }
