@@ -92,6 +92,6 @@ export default function test2() {
         <button onClick={wagmiSign}>wagmiSign</button>
         <button onClick={testMultiplePromises}>Test Multiple Promises</button>
         <pre>{klaytnInfo}</pre>
-        <pre>{window && JSON.stringify(window.navigator.userAgent, null, 2)}</pre>
+        <pre>{typeof window !== 'undefined' && JSON.stringify(window.navigator.userAgent, null, 2)}</pre>
   <button onClick={() => alert(window?.klaytn?.request)}>klaytn.requset</button></>;
 }
