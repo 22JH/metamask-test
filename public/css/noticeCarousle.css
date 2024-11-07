@@ -28,7 +28,8 @@
     opacity: 1 !important;
   }
 
-  .slick-slide {
+  .slick-slide,
+  .slick-list {
     aspect-ratio: 3 / 1 !important;
   }
 }
