@@ -22,7 +22,7 @@ export default function test2() {
   const [walletClient, setWalletClient] = useState<any>(null)
 
   const connect = async () => {
-    alert(window && window.klaytn.enable)
+    alert(window && window.klaytn.isMobile)
     const a = window && await window.klaytn.enable()
     setAccount(a[0])
   }
