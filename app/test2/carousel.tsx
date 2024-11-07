@@ -27,6 +27,7 @@ export default function NoticeCarousel({  }: NoticeCarouselProps) {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplaySpeed: 5000,
+    infinite: false,
     appendDots: (dots: React.ReactNode) => (
       <div>
         <ul className="flex justify-center gap-1"> {dots} </ul>

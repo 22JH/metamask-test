@@ -27,4 +27,8 @@
     color: #fff !important;
     opacity: 1 !important;
   }
+
+  .slick-slide {
+    height: 150px !important;
+  }
 }
