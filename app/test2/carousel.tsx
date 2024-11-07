@@ -5,7 +5,7 @@ import Slider from 'react-slick';
 
 import '@/public/css/react-slick.css';
 import '@/public/css/react-slick-theme.css';
-import '@/public/css/noticeCarousle.css';
+// import '@/public/css/noticeCarousle.css';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -27,18 +27,18 @@ export default function NoticeCarousel({  }: NoticeCarouselProps) {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplaySpeed: 5000,
-    appendDots: (dots: React.ReactNode) => (
-      <div>
-        <ul className="flex justify-center gap-1"> {dots} </ul>
-      </div>
-    ),
+    // appendDots: (dots: React.ReactNode) => (
+    //   <div>
+    //     <ul className="flex justify-center gap-1"> {dots} </ul>
+    //   </div>
+    // ),
   };
 
   return (
     <div className="notice-carousel mx-4">
-      <Slider {...sliderSettings} className="relative">
-        {notices.map(({ desc,  link, externalLink }) => (
-            <section className="w-full h-[150px] bg-red-500"/>
+      <Slider {...sliderSettings} className="relative" dots={false}>
+        {notices.map(({ desc }, index) => (
+            <section className="w-full h-[150px] bg-red-500" key={index}/>
         ))}
       </Slider>
     </div>
