@@ -65,5 +65,6 @@ export default function test2() {
   return (<>
     <NoticeCarousel />
     <p className="font-bold">test</p>
+    {window && <pre>{JSON.stringify(window.navigator.userAgent, null, 2)}</pre>}  
   </>);
 }
