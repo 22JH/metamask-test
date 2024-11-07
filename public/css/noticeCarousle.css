@@ -29,6 +29,6 @@
   }
 
   .slick-slide {
-    height: 150px !important;
+    aspect-ratio: 3 / 1 !important;
   }
 }
