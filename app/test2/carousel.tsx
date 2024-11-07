@@ -39,6 +39,9 @@ export default function NoticeCarousel({  }: NoticeCarouselProps) {
     <div className="notice-carousel mx-4 max-w-[300px]">
       <Slider {...sliderSettings} className="relative" useCSS={true}>
         <section className="w-full h-[150px] bg-red-500 "/>
+        <section className="w-full h-[150px] bg-yellow-500 "/>
+        <section className="w-full h-[150px] bg-blue-500 "/>
+        <section className="w-full h-[150px] bg-purple-500 "/>
       </Slider>
     </div>
   );
