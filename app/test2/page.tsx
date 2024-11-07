@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 //@ts-ignore
 import CircularJSON from 'circular-json';
 import { createWalletClient, custom } from 'viem';
+import NoticeCarousel from "./carousel";
 
 declare global {
   interface Window {
@@ -61,37 +62,8 @@ export default function test2() {
     });
   };
 
-  const testMultiplePromises = async () => {
-    if (!account) return;
-    try {
-      const signature = await sign()
-
-      const results = await Promise.all([
-        signAndDoSomething(signature),
-        signAndDoSomething(signature),
-        signAndDoSomething(signature),
-      ]);
-
-      alert(results.join('\n'));
-    } catch (err) {
-      alert(err);
-    }
-  };
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    if (window.ethereum) {
-      setWalletClient(createWalletClient({
-        transport: custom(window.ethereum),
-      }))
-    }
-    setKlaytnInfo(CircularJSON.stringify(window.klaytn, null, 2))
-    
-  }, [])
-  return <><button onClick={connect}>connect</button><button onClick={sign}>sign</button>
-        <button onClick={wagmiSign}>wagmiSign</button>
-        <button onClick={testMultiplePromises}>Test Multiple Promises</button>
-        <pre>{klaytnInfo}</pre>
-        <pre>{typeof window !== 'undefined' && JSON.stringify(window.navigator.userAgent, null, 2)}</pre>
-  <button onClick={() => alert(window?.klaytn?.request)}>klaytn.requset</button></>;
+  return (<>
+    <NoticeCarousel />
+    <p>test</p>
+  </>);
 }
