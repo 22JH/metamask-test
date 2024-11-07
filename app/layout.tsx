@@ -3,6 +3,7 @@ import WagmiProvider from "./WagmiProvider";
 import { headers } from "next/headers";
 import { wagmiConfig } from "./wagmiConfig";
 import { cookieToInitialState } from 'wagmi';
+import "@/app/globals.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",

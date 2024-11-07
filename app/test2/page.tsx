@@ -64,6 +64,6 @@ export default function test2() {
 
   return (<>
     <NoticeCarousel />
-    <p>test</p>
+    <p className="font-bold">test</p>
   </>);
 }
